@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
+const axios = require('axios');
 const session = require('express-session');
 
 const app = express();
@@ -9,7 +10,7 @@ const app = express();
 
 
 // Connect to MongoDB Atlas
-mongoose.connect('mongodb+srv://exclusiveshahzod:UcmrUkzkg5vvwfGb@cluster0.p7nhdnz.mongodb.net/mydatabase')
+mongoose.connect('mongodb+srv://exclusiveshahzod:zh0YsqKsMMMJ2HCM@cluster0.p7nhdnz.mongodb.net/mydatabase')
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
@@ -166,7 +167,25 @@ app.post('/adminpage', async (req, res) => {
 
 // Welcome page route
 app.get('/welcome', (req, res) => {
-  res.render('welcome'); // Create the welcome.ejs page
+  res.render('welcome'); 
+});
+//2api keys
+app.get('/news', async (req, res) => {
+  const theme = req.query.theme;
+  const url  = `https://newsapi.org/v2/everything?q=${theme}&from=2024-01-12&sortBy=publishedAt&apiKey=535018e772fe41c586383c482e2e39c7`;
+  const response = await axios.get(url);
+  const articles = response.data.articles.slice(0,30);
+  res.render('news',{articles});
+});
+app.get('/facts', async (req, res) => {
+   const url = 'https://api.api-ninjas.com/v1/facts?limit=20';
+    const response = await axios.get(url,{
+      headers:{
+        'X-Api-Key': 'sFqQ8nUjQGOmqCqY1NqUlQ==XycsoRYDFVs8ZIKi'
+      }
+    });
+    const facts = response.data;
+    res.render('facts',{facts});
 });
 
 app.listen(3000, () => console.log('Server started on port 3000'));

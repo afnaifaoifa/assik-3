@@ -46,25 +46,26 @@
         }
 
         nav {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px; /* Add margin-top to create space between header and buttons */
-        }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Add margin-top to create space between header and buttons */
+}
 
-        nav a {
-            color: #333;
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            background-color: #f0f0f0;
-            transition: background-color 0.3s ease;
-            margin-bottom: 10px; /* Add margin-bottom to create space between buttons */
-        }
+nav a {
+    color: #fff; /* Change text color to white */
+    text-decoration: none;
+    padding: 10px 20px; /* Increase padding for larger buttons */
+    border-radius: 5px;
+    background-color: #3498db; /* Change background color to blue */
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px; /* Add margin-bottom to create space between buttons */
+    font-size: 18px; /* Increase font size for larger buttons */
+}
 
-        nav a:hover {
-            background-color: #e0e0e0;
-        }
+nav a:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
     </style>
 </head>
 <body>
@@ -73,6 +74,8 @@
     </div>
     <nav>
         <a href="/login">Login</a>
+        <a href="/facts">facts</a>
+        <a href="/news">news</a>
         <a href="/signup">Signup</a>
         <% if (user && user.isAdmin) { %>
             <a href="/admin">Admin</a>
