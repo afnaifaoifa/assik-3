@@ -62,7 +62,7 @@ app.post('/login', async (req, res) => {
     if (user.isAdmin) {
       res.redirect('/admin'); // Redirect to the admin page if the user is an admin
     } else {
-      res.redirect('/welcome'); // Redirect to the welcome page for regular users
+      res.redirect('/main'); // Redirect to the welcome page for regular users
     }
   } else {
     res.send('Invalid username or password.');
@@ -172,7 +172,7 @@ app.get('/welcome', (req, res) => {
 //2api keys
 app.get('/news', async (req, res) => {
   const theme = req.query.theme;
-  const url  = `https://newsapi.org/v2/everything?q=${theme}&from=2024-01-12&sortBy=publishedAt&apiKey=535018e772fe41c586383c482e2e39c7`;
+  const url  = `https://newsapi.org/v2/everything?q=tesla&from=2024-01-13&sortBy=publishedAt&apiKey=92c9f1fb3567491d8fd805c167f2e1ac`;
   const response = await axios.get(url);
   const articles = response.data.articles.slice(0,30);
   res.render('news',{articles});
@@ -187,5 +187,7 @@ app.get('/facts', async (req, res) => {
     const facts = response.data;
     res.render('facts',{facts});
 });
+
+
 
 app.listen(3000, () => console.log('Server started on port 3000'));

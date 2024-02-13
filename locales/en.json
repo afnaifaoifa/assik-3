@@ -1,1 +1,10 @@
-{}
+
+{
+    "translation": {
+      "language_selector": "Language",
+      "english": "English",
+      "russian": "Russian",
+      "welcome_message": "Welcome to the Home Page"
+    }
+  }
+  
