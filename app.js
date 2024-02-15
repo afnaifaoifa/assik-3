@@ -172,22 +172,35 @@ app.get('/welcome', (req, res) => {
 //2api keys
 app.get('/news', async (req, res) => {
   const theme = req.query.theme;
-  const url  = `https://newsapi.org/v2/everything?q=tesla&from=2024-01-13&sortBy=publishedAt&apiKey=92c9f1fb3567491d8fd805c167f2e1ac`;
+  const carKeywords = ['car',  'mercedes',  'машины'];
+  const queryString = carKeywords.join(' OR ');
+  const url  = `https://newsapi.org/v2/everything?q=tesla&from=2024-01-15&sortBy=publishedAt&apiKey=92c9f1fb3567491d8fd805c167f2e1ac`;
   const response = await axios.get(url);
   const articles = response.data.articles.slice(0,30);
   res.render('news',{articles});
 });
-app.get('/facts', async (req, res) => {
-   const url = 'https://api.api-ninjas.com/v1/facts?limit=20';
-    const response = await axios.get(url,{
-      headers:{
-        'X-Api-Key': 'sFqQ8nUjQGOmqCqY1NqUlQ==XycsoRYDFVs8ZIKi'
+// Route handler for the "/cars" endpoint
+app.get('/cars', async (req, res) => {
+  try {
+    const options = {
+      method: 'GET',
+      url: 'https://car-api2.p.rapidapi.com/api/vehicle-attributes',
+      params: {
+        attribute: 'bodies.type'
+      },
+      headers: {
+        'X-RapidAPI-Key': '3d6bde62d5msh40a4ed0c32676e1p107b46jsn6b92358e988b',
+        'X-RapidAPI-Host': 'car-api2.p.rapidapi.com'
       }
-    });
-    const facts = response.data;
-    res.render('facts',{facts});
+    };
+    const response = await axios.request(options);
+    const cars = response.data;
+    res.render('cars', { cars, error: null });
+  } catch (error) {
+    console.error(error);
+    res.render('cars', { cars: [], error: 'Error fetching car makes. Please try again.' });
+  }
 });
-
 
 
 app.listen(3000, () => console.log('Server started on port 3000'));
