@@ -17,7 +17,7 @@ npm install axios
 
 
 4. Start the application:
-npm start
+  node app.js
 
 
 5. Access the application in your web browser at `http://localhost:3000`.
@@ -38,13 +38,19 @@ npm start
 - **models/**: Directory containing MongoDB schema definitions.
 - **routes/**: Directory containing route files defining request handlers for different URL paths.
 
+6. Open your web browser and navigate to `http://localhost:3000` to view the application.
+
+## Usage
+
+- Upon opening the application, you'll see a list of car-related news articles fetched from the News API.
+- You can use the search input field to search for specific types of car news by entering keywords such as "cars", "automobile", "tesla", etc.
+- Press the "Search" button to see the filtered news articles based on your search query.
 ## Contributions
 Contributions and improvements are welcome! Feel free to submit pull requests or open issues to discuss new features, bug fixes, or enhancements for the project.
 
 ##
-https://five444844654.onrender.com deploy
+https://shakhzod-guprakhunov.onrender.com   deploy
 
 admin 
-login : user
-password:user
-
+login : Shakhzod
+password:1234
