@@ -92,13 +92,17 @@
 <body>
     <div class="container">
         <h1>Car data</h1>
-        <form action="/cars" method="post">
-            <label for="make">Car make:</label>
-            <input type="text" id="make" name="make" placeholder="Toyota" required><br>
-            <label for="model">Car model:</label>
-            <input type="text" id="model" name="model" placeholder="Corolla" required><br>
-            <button type="submit">Submit</button>
-        </form>
+        <h3> Car make: <%= cars[0].make %> </h3>
+        <h3> Car model: <%= cars[0].model %> </h3>
+        <h3> Car year: <%= cars[0].year %> </h3>
+        <h3> Car city_mpg: <%= cars[0].city_mpg %> </h3>
+        <h3> Car class: <%= cars[0].class %> </h3>
+        <h3> Car combination_mpg: <%= cars[0].combination_mpg %> </h3>
+        <h3> Car cylinders: <%= cars[0].cylinders %> </h3>
+        <h3> Car displacement: <%= cars[0].displacement %> </h3>
+        <h3> Car drive: <%= cars[0].drive %> </h3>
+        <h3> Car fuel type: <%= cars[0].fuel_type %> </h3>
+        <h3> Car high way mpg: <%= cars[0].highway_mpg %> </h3>
     </div>
 </body>
 </html>

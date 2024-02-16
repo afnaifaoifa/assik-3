@@ -172,35 +172,39 @@ app.get('/welcome', (req, res) => {
 //2api keys
 app.get('/news', async (req, res) => {
   const theme = req.query.theme;
-  const carKeywords = ['car',  'mercedes',  'машины'];
+  const carKeywords = ['cars', 'automobile','tesla' ,'mercedes',  'машины'];
   const queryString = carKeywords.join(' OR ');
-  const url  = `https://newsapi.org/v2/everything?q=tesla&from=2024-01-15&sortBy=publishedAt&apiKey=92c9f1fb3567491d8fd805c167f2e1ac`;
+  const url  = `https://newsapi.org/v2/everything?q=tesla&from=2024-01-16&sortBy=publishedAt&apiKey=92c9f1fb3567491d8fd805c167f2e1ac`;
   const response = await axios.get(url);
   const articles = response.data.articles.slice(0,30);
   res.render('news',{articles});
 });
-// Route handler for the "/cars" endpoint
 app.get('/cars', async (req, res) => {
+  res.render('cars');
+})
+app.post('/cars', async (req, res) => {
   try {
     const options = {
       method: 'GET',
-      url: 'https://car-api2.p.rapidapi.com/api/vehicle-attributes',
+      url: 'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars',
       params: {
-        attribute: 'bodies.type'
+        make: req.body.make,
+        model: req.body.model
       },
       headers: {
-        'X-RapidAPI-Key': '3d6bde62d5msh40a4ed0c32676e1p107b46jsn6b92358e988b',
-        'X-RapidAPI-Host': 'car-api2.p.rapidapi.com'
+        'X-RapidAPI-Key': '8f5ef08c9emshcfd8325fe186caap10eafcjsn0469ecef7688',
+        'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'
       }
     };
     const response = await axios.request(options);
     const cars = response.data;
-    res.render('cars', { cars, error: null });
+    console.log("wtf");
+    console.log(cars);
+    res.render('cars-result', { cars, error: null });
   } catch (error) {
     console.error(error);
-    res.render('cars', { cars: [], error: 'Error fetching car makes. Please try again.' });
+    res.render('cars-result', { cars: [], error: 'Error fetching car makes. Please try again.' });
   }
 });
-
 
 app.listen(3000, () => console.log('Server started on port 3000'));
